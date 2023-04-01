@@ -1,6 +1,6 @@
 import { join, resolve } from 'path';
 
-import { ApiPostgresModule } from '@app/database/api-postgres/api-postgres.module';
+import { ApiPostgresModule } from '@app/database/api-service/api-postgres.module';
 import { HealthModule } from '@app/health';
 import { LoggerModule } from '@app/logger';
 import { Module } from '@nestjs/common';

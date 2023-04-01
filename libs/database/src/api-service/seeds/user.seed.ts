@@ -1,4 +1,4 @@
-export const seed = {
+export const userSeed = {
   id: '988c50fb-4590-481f-bdfc-594d27b23b71',
   first_name: 'Admin First Name',
   last_name: 'Admin Last Name',
