@@ -6,7 +6,6 @@ RUN yarn install --frozen-lockfile
 
 FROM install AS production
 WORKDIR /app
-COPY nest-cli.json package.json yarn.lock tsconfig.json tsconfig.build.json ./
 RUN yarn install --production --frozen-lockfile
 
 # remove unused dependencies
@@ -21,7 +20,6 @@ WORKDIR /app
 
 COPY apps/api-service ./apps/api-service
 COPY libs ./libs
-COPY nest-cli.json package.json yarn.lock tsconfig.json tsconfig.build.json ./
 
 # build source
 RUN yarn build api-service
