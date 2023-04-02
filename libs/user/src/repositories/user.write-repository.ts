@@ -2,7 +2,7 @@ import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { EntityManager, Repository } from 'typeorm';
 
 import { API_DB_CONNECTION } from '@app/database/api-postgres.constants';
-import { UserProfileTypeOrmEntity } from '@app/database/api-service/entities/user.typeorm-entity';
+import { UserTypeOrmEntity } from '@app/database/api-service/entities/user.typeorm-entity';
 import { Inject } from '@nestjs/common';
 import { InjectEntityManager } from '@nestjs/typeorm';
 
@@ -16,14 +16,14 @@ import { IUserWriteRepository } from '../interfaces/user.write-repository.interf
 import { USER_AGGREGATE_FACTORY } from '../user.constants';
 
 export class UserWriteRepository implements IUserWriteRepository {
-  private repository: Repository<UserProfileTypeOrmEntity>;
+  private repository: Repository<UserTypeOrmEntity>;
 
   constructor(
     @InjectPinoLogger(UserWriteRepository.name) readonly logger: PinoLogger,
     @InjectEntityManager(API_DB_CONNECTION) readonly manager: EntityManager,
     @Inject(USER_AGGREGATE_FACTORY) readonly factory: UserAggregateFactory,
   ) {
-    this.repository = this.manager.getRepository(UserProfileTypeOrmEntity);
+    this.repository = this.manager.getRepository(UserTypeOrmEntity);
   }
 
   async create(props: UserProps): Promise<void> {
@@ -54,7 +54,7 @@ export class UserWriteRepository implements IUserWriteRepository {
     await this.repository.delete({ id });
   }
 
-  private toDomain(entity: UserProfileTypeOrmEntity): UserAggregate {
+  private toDomain(entity: UserTypeOrmEntity): UserAggregate {
     this.logger.info('toDomain()');
     this.logger.debug({ entity }, 'Entity');
     return this.factory.reconstitute(entity);

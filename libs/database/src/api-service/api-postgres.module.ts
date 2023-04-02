@@ -7,9 +7,9 @@ import { API_DB_CONNECTION } from '../api-postgres.constants';
 import { PinoTypeormLogger } from '../loggers/pino-typeorm.logger';
 import { ApiPostgresConfigModule } from './config/config.module';
 import { ApiPostgresConfigService } from './config/config.service';
-import { UserProfileTypeOrmEntity } from './entities/user.typeorm-entity';
+import { UserTypeOrmEntity } from './entities/user.typeorm-entity';
 
-const Entities = [UserProfileTypeOrmEntity];
+const Entities = [UserTypeOrmEntity];
 
 @Module({
   imports: [

@@ -1,9 +1,9 @@
 import { Column, Entity } from 'typeorm';
 
-import { TypeOrmEntityBase } from './typeorm-entity.base';
+import { TypeOrmEntityBase } from '@app/shared/typeorm/typeorm-entity.base';
 
 @Entity({ name: 'users' })
-export class UserProfileTypeOrmEntity extends TypeOrmEntityBase {
+export class UserTypeOrmEntity extends TypeOrmEntityBase {
   @Column({ name: 'first_name' })
   firstName: string;
 
