@@ -4,6 +4,9 @@ import { CreateUserCommand } from '@app/user/commands/create-user/create-user.co
 import { CreateUserRequestBodyDto } from '@app/user/dtos/create-user.request-body.dto';
 import { Body, Controller, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+
+import { apiOkResponseSchema } from './ok.response-schema';
 
 @Controller()
 export class CreateUserController {
@@ -14,6 +17,12 @@ export class CreateUserController {
   ) {}
 
   @Post('user.create')
+  @ApiTags('user')
+  @ApiOperation({
+    summary: 'Create a new user',
+    description: 'Create a new user',
+  })
+  @ApiOkResponse(apiOkResponseSchema)
   async createUser(@Body() body: CreateUserRequestBodyDto) {
     this.logger.info('createUser()');
     this.logger.debug({ body }, 'Body');

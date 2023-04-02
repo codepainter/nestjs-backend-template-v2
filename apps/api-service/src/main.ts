@@ -7,6 +7,7 @@ import { ValidationExceptionFilter } from '@app/shared/filters/validation-except
 import { ResponseInterceptor } from '@app/shared/http/response.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 import { AppConfigService } from './config/config.service';
@@ -18,6 +19,18 @@ async function bootstrap() {
 
   const logger = app.get<PinoLogger>(PinoLogger);
   app.useLogger(logger);
+
+  const appConfig = app.get(AppConfigService);
+
+  if (!appConfig.isProduction) {
+    const swaggerConfig = new DocumentBuilder()
+      .setTitle('Api Service')
+      .setDescription('The API Service description')
+      .setVersion('0.0.1')
+      .build();
+    const document = SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup('docs', app, document);
+  }
 
   app.use(helmet());
 
@@ -36,7 +49,6 @@ async function bootstrap() {
     new ValidationExceptionFilter(),
   );
 
-  const appConfig = app.get(AppConfigService);
   await app.listen(appConfig.port).then(() => {
     logger.log(
       `[${appConfig.env}] API Service is listening on port: ${appConfig.port}`,
