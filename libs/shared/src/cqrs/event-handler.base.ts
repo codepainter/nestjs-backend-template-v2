@@ -13,7 +13,10 @@ export abstract class EventHandlerBase<TEvent>
     this.logger.info('handle()');
     this.logger.debug({ event }, 'Event');
     try {
+      this.logger.trace('BEGIN');
+
       return await this.handleEvent(event);
+      this.logger.trace('END');
     } catch (error) {
       this.logger.error({ error }, 'Event Handler Error Caught');
       throw error;

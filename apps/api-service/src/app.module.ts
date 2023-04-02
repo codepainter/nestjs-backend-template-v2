@@ -3,11 +3,11 @@ import { join, resolve } from 'path';
 import { ApiPostgresModule } from '@app/database/api-service/api-postgres.module';
 import { HealthModule } from '@app/health';
 import { LoggerModule } from '@app/logger';
+import { Environment } from '@app/shared/shared.constants';
+import { UserModule } from '@app/user';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AppConfigModule } from './config/config.module';
 
 @Module({
@@ -15,7 +15,7 @@ import { AppConfigModule } from './config/config.module';
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath:
-        process.env.NODE_ENV !== 'production'
+        process.env.NODE_ENV !== Environment.Production
           ? resolve(join(process.cwd(), 'apps/api-service', '.env'))
           : undefined,
     }),
@@ -25,8 +25,7 @@ import { AppConfigModule } from './config/config.module';
     }),
     ApiPostgresModule,
     HealthModule,
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

@@ -25,7 +25,9 @@
       "@app/shared": ["libs/shared/src"],
       "@app/shared/*": ["libs/shared/src/*"],
       "@app/health": ["libs/health/src"],
-      "@app/health/*": ["libs/health/src/*"]
+      "@app/health/*": ["libs/health/src/*"],
+      "@app/user": ["libs/user/src"],
+      "@app/user/*": ["libs/user/src/*"]
     },
     "plugins": [
       {

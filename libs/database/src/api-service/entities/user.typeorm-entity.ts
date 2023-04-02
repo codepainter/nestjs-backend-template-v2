@@ -2,7 +2,7 @@ import { Column, Entity } from 'typeorm';
 
 import { TypeOrmEntityBase } from './typeorm-entity.base';
 
-@Entity({ name: 'user_profile' })
+@Entity({ name: 'users' })
 export class UserProfileTypeOrmEntity extends TypeOrmEntityBase {
   @Column({ name: 'first_name' })
   firstName: string;
