@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build ${{ matrix.service }} docker image
+    name: 'Build image: ${{ matrix.service }}'
     strategy:
       matrix:
         service: ['api-service']
