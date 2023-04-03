@@ -18,7 +18,6 @@ export class DateUtil {
   }
 
   static getDate(date: Date): string {
-    //
     return DateTime.fromJSDate(date)
       .toUTC()
       .startOf('day')
