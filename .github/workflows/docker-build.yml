@@ -17,11 +17,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - uses: benjlevesque/short-sha@v2.2
+        id: short-sha
+        with:
+          length: 6
+
       - name: Build docker image
         run: |
           docker build \
           -f apps/${{ matrix.service }}/Dockerfile . \
-          -t ${{ github.repository }}/${{ matrix.service }}:${{ github.sha }}
+          -t ${{ github.repository }}/${{ matrix.service }}:${{ steps.short-sha.outputs.sha }}
 
       - name: Docker Images
         run: docker images
