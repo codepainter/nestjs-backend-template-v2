@@ -19,6 +19,6 @@ jobs:
 
       - name: Build docker image
         run: |
-          docker build 
-          -f apps/${{ matrix.service }}/Dockerfile .
+          docker build \
+          -f apps/${{ matrix.service }}/Dockerfile . \
           -t ${{ github.repository }}/${{ matrix.service }}:${{ github.sha }}
