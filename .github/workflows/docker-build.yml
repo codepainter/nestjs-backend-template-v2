@@ -22,3 +22,6 @@ jobs:
           docker build \
           -f apps/${{ matrix.service }}/Dockerfile . \
           -t ${{ github.repository }}/${{ matrix.service }}:${{ github.sha }}
+
+      - name: Docker Images
+        run: docker images
