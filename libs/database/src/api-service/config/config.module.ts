@@ -1,5 +1,6 @@
 import * as Joi from 'joi';
 
+import { validate } from '@app/shared/config/validate';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
@@ -17,6 +18,7 @@ import { ApiPostgresConfigService } from './config.service';
         allowUnknown: true,
         abortEarly: true,
       },
+      validate,
     }),
   ],
   providers: [ApiPostgresConfigService],

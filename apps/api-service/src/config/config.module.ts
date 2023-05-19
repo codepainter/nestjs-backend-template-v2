@@ -1,5 +1,6 @@
 import * as Joi from 'joi';
 
+import { validate } from '@app/shared/config/validate';
 import { Environment } from '@app/shared/shared.constants';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -18,6 +19,7 @@ import { AppConfigService } from './config.service';
       validationOptions: {
         allowUnknown: true,
       },
+      validate,
     }),
   ],
   providers: [AppConfigService],
