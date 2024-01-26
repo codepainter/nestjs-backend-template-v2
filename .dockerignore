@@ -10,3 +10,4 @@
 **/.aws
 **/dist
 **/terraform
+.tool-versions
